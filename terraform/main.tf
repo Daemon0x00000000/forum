@@ -1,6 +1,14 @@
 terraform {
   required_version = ">= 1.0"
 
+  cloud {
+    organization = "TerraformSynth"
+
+    workspaces {
+      name = "forum"
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"

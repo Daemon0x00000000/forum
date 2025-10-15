@@ -1,0 +1,6 @@
+# Configuration pour utiliser Terraform Cloud en local
+# Copier ce fichier vers ~/.terraformrc et remplacer YOUR_TOKEN
+
+credentials "app.terraform.io" {
+  token = "YOUR_TERRAFORM_CLOUD_TOKEN"
+}

@@ -55,25 +55,27 @@ jobs:
         run: npm install
 
       - name: Snyk Code test (SAST)
-        run: snyk code test --sarif > snyk-code.sarif || true
+        run: snyk code test --sarif > snyk-code.sarif
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk Open Source test (Dependencies)
-        run: snyk test --all-projects --sarif-file-output=snyk-opensource.sarif || true
+        run: snyk test --all-projects --sarif-file-output=snyk-opensource.sarif
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Upload Snyk Code results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
-        if: always()
+        if: always() && hashFiles('snyk-code.sarif') != ''
         with:
           sarif_file: snyk-code.sarif
           category: snyk-code
 
       - name: Upload Snyk Open Source results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
-        if: always()
+        if: always() && hashFiles('snyk-opensource.sarif') != ''
         with:
           sarif_file: snyk-opensource.sarif
           category: snyk-opensource

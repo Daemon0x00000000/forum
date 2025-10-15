@@ -149,11 +149,11 @@ jobs:
         working-directory: terraform
 
       - name: Terraform Plan
-        run: terraform plan -var="github_repository=${{ github.repository }}" -var="app_version=${{ github.sha }}"
+        run: terraform plan -var="github_repository=${{ github.repository }}"
         working-directory: terraform
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="github_repository=${{ github.repository }}" -var="app_version=${{ github.sha }}"
+        run: terraform apply -auto-approve -var="github_repository=${{ github.repository }}"
         working-directory: terraform
 
       - name: Get Outputs
@@ -197,6 +197,6 @@ jobs:
         working-directory: terraform
 
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve -var="github_repository=${{ github.repository }}" -var="app_version=main"
+        run: terraform destroy -auto-approve -var="github_repository=${{ github.repository }}"
         working-directory: terraform
 

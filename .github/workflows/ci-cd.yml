@@ -159,8 +159,14 @@ jobs:
       - name: Get Outputs
         id: terraform-outputs
         run: |
-          echo "thread_url=$(terraform output -raw thread_url)" >> $GITHUB_OUTPUT
-          echo "sender_url=$(terraform output -raw sender_url)" >> $GITHUB_OUTPUT
+          {
+            echo "thread_url<<EOF"
+            terraform output -raw thread_url
+            echo "EOF"
+            echo "sender_url<<EOF"
+            terraform output -raw sender_url
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
         working-directory: terraform
 
       - name: Comment PR with URLs

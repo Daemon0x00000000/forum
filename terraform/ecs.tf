@@ -152,7 +152,7 @@ resource "aws_ecs_task_definition" "api" {
   container_definitions = jsonencode([
     {
       name      = "api"
-      image     = "ghcr.io/${var.github_repository}/api:${var.app_version}"
+      image     = "ghcr.io/${lower(var.github_repository)}/api:${var.app_version}"
       essential = true
 
       portMappings = [
@@ -172,6 +172,14 @@ resource "aws_ecs_task_definition" "api" {
           value = "3000"
         }
       ]
+
+      healthCheck = {
+        command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/messages || exit 1"]
+        interval    = 30
+        timeout     = 5
+        retries     = 3
+        startPeriod = 60
+      }
 
       logConfiguration = {
         logDriver = "awslogs"
@@ -201,7 +209,7 @@ resource "aws_ecs_task_definition" "thread" {
   container_definitions = jsonencode([
     {
       name      = "thread"
-      image     = "ghcr.io/${var.github_repository}/thread:${var.app_version}"
+      image     = "ghcr.io/${lower(var.github_repository)}/thread:${var.app_version}"
       essential = true
 
       portMappings = [
@@ -221,6 +229,14 @@ resource "aws_ecs_task_definition" "thread" {
           value = "80"
         }
       ]
+
+      healthCheck = {
+        command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:80/ || exit 1"]
+        interval    = 30
+        timeout     = 5
+        retries     = 3
+        startPeriod = 60
+      }
 
       logConfiguration = {
         logDriver = "awslogs"
@@ -250,7 +266,7 @@ resource "aws_ecs_task_definition" "sender" {
   container_definitions = jsonencode([
     {
       name      = "sender"
-      image     = "ghcr.io/${var.github_repository}/sender:${var.app_version}"
+      image     = "ghcr.io/${lower(var.github_repository)}/sender:${var.app_version}"
       essential = true
 
       portMappings = [
@@ -270,6 +286,14 @@ resource "aws_ecs_task_definition" "sender" {
           value = "8080"
         }
       ]
+
+      healthCheck = {
+        command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/ || exit 1"]
+        interval    = 30
+        timeout     = 5
+        retries     = 3
+        startPeriod = 60
+      }
 
       logConfiguration = {
         logDriver = "awslogs"

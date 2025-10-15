@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       destroy:
-        description: 'Destroy infrastructure'
+        description: 'Destroy Terraform infrastructure'
         required: false
         type: boolean
         default: false
@@ -128,7 +128,7 @@ jobs:
           file_pattern: CHANGELOG.md
 
   deploy:
-    name: Deploy to AWS
+    name: Deploy to AWS ECS
     needs: build-and-push
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -136,42 +136,69 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.0.0
+          terraform_version: 1.5.0
 
       - name: Terraform Init
-        id: init
         run: terraform init
         working-directory: terraform
 
+      - name: Terraform Plan
+        run: terraform plan -var="github_repository=${{ github.repository }}" -var="app_version=${{ github.sha }}"
+        working-directory: terraform
+
       - name: Terraform Apply
-        id: apply
         run: terraform apply -auto-approve -var="github_repository=${{ github.repository }}" -var="app_version=${{ github.sha }}"
         working-directory: terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Get Outputs
+        id: terraform-outputs
+        run: |
+          echo "thread_url=$(terraform output -raw thread_url)" >> $GITHUB_OUTPUT
+          echo "sender_url=$(terraform output -raw sender_url)" >> $GITHUB_OUTPUT
+        working-directory: terraform
+
+      - name: Comment PR with URLs
+        if: github.event_name == 'push'
+        run: |
+          echo "🚀 Deployment successful!"
+          echo "Thread URL: ${{ steps.terraform-outputs.outputs.thread_url }}"
+          echo "Sender URL: ${{ steps.terraform-outputs.outputs.sender_url }}"
 
   destroy:
     name: Destroy Infrastructure
-    needs: deploy
-    # The destroy job will only run if the 'destroy' input is set to true when the workflow is manually triggered.
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true' }}
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.destroy == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.0.0
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: terraform
 
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve -var="github_repository=${{ github.repository }}" -var="app_version=main"
         working-directory: terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+

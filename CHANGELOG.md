@@ -4,6 +4,16 @@
 ### Features
 
 * add aws_profile variable for configurable AWS profile in Terraform ([e861b16](https://github.com/Daemon0x00000000/forum/commit/e861b1667c5fc68fc4e75cbe5c5a541e7ad8d814))
+* update IAM policy and remove default_tags from main.tf for permission adjustments ([fab8f13](https://github.com/Daemon0x00000000/forum/commit/fab8f1305f885371b818305c4ca6ea9a704330c9))
+
+
+
+# 1.0.0 (2025-10-15)
+
+
+### Features
+
+* add aws_profile variable for configurable AWS profile in Terraform ([e861b16](https://github.com/Daemon0x00000000/forum/commit/e861b1667c5fc68fc4e75cbe5c5a541e7ad8d814))
 
 
 

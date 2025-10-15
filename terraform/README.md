@@ -41,7 +41,8 @@ terraform init
 ```bash
 terraform plan \
   -var="github_repository=daemon0x00000000/forum" \
-  -var="app_version=main"
+  -var="app_version=main" \
+  -var="aws_profile=wazabi"
 ```
 
 ### 3. Déployer l'infrastructure
@@ -49,7 +50,8 @@ terraform plan \
 ```bash
 terraform apply \
   -var="github_repository=daemon0x00000000/forum" \
-  -var="app_version=main"
+  -var="app_version=main" \
+  -var="aws_profile=wazabi"
 ```
 
 Ou en utilisant un tag/SHA spécifique :
@@ -57,7 +59,8 @@ Ou en utilisant un tag/SHA spécifique :
 ```bash
 terraform apply \
   -var="github_repository=daemon0x00000000/forum" \
-  -var="app_version=abc1234"
+  -var="app_version=abc1234" \
+  -var="aws_profile=wazabi"
 ```
 
 ### 4. Récupérer les URLs

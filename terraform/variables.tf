@@ -4,6 +4,12 @@ variable "aws_region" {
   default     = "eu-central-1"
 }
 
+variable "aws_profile" {
+  description = "AWS profile to use (empty for CI/CD with environment credentials)"
+  type        = string
+  default     = ""
+}
+
 variable "app_name" {
   description = "Application name"
   type        = string

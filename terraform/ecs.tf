@@ -174,7 +174,7 @@ resource "aws_ecs_task_definition" "api" {
       ]
 
       healthCheck = {
-        command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/messages || exit 1"]
+        command     = ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/messages || exit 1"]
         interval    = 30
         timeout     = 5
         retries     = 3
@@ -227,6 +227,10 @@ resource "aws_ecs_task_definition" "thread" {
         {
           name  = "PORT"
           value = "80"
+        },
+        {
+          name  = "SENDER_URL"
+          value = "http://${aws_lb.main.dns_name}:8090"
         }
       ]
 
@@ -284,6 +288,10 @@ resource "aws_ecs_task_definition" "sender" {
         {
           name  = "PORT"
           value = "8080"
+        },
+        {
+          name  = "THREAD_URL"
+          value = "http://${aws_lb.main.dns_name}:81"
         }
       ]
 

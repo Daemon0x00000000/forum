@@ -1,3 +1,7 @@
+# 1.0.0 (2025-10-15)
+
+
+
 # Changelog
 
 Tous les changements notables apportés à ce projet seront documentés dans ce fichier.

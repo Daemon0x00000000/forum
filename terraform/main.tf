@@ -13,11 +13,5 @@ provider "aws" {
   region  = var.aws_region
   profile = var.aws_profile != "" ? var.aws_profile : null
 
-  default_tags {
-    tags = {
-      Project     = var.app_name
-      Environment = var.environment
-      ManagedBy   = "Terraform"
-    }
-  }
+  # Removed default_tags to avoid requiring logs:TagResource and servicediscovery:TagResource permissions
 }

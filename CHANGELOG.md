@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/Daemon0x00000000/forum/compare/v2.0.0...v2.1.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* update CodeQL Action to v3 and fix Snyk SARIF output ([3eda265](https://github.com/Daemon0x00000000/forum/commit/3eda2654c8690a280f811a285d20fccb042a2250))
+* use continue-on-error instead of || true for Snyk SARIF generation ([559103c](https://github.com/Daemon0x00000000/forum/commit/559103c7f29af7817bbef811bd1ac46120457780))
+
+
+### Features
+
+* enhance CI/CD security with secrets scanning and SAST analysis; update version to 2.1.0 ([5bf06bd](https://github.com/Daemon0x00000000/forum/commit/5bf06bd5ffd2b44bfe5badb63d7cf78720f9abbe))
+
+
+
 # Changelog
 
 Tous les changements notables apportés à ce projet seront documentés dans ce fichier.

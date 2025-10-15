@@ -92,6 +92,7 @@
         "elasticloadbalancing:CreateListener",
         "elasticloadbalancing:DeleteListener",
         "elasticloadbalancing:DescribeListeners",
+        "elasticloadbalancing:DescribeListenerAttributes",
         "elasticloadbalancing:ModifyListener",
         "elasticloadbalancing:AddTags",
         "elasticloadbalancing:RemoveTags",

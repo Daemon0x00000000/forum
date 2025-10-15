@@ -5,6 +5,27 @@ Tous les changements notables apportés à ce projet seront documentés dans ce 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-10-15
+
+### Ajouté
+- **Pipeline de sécurité complète dans CI/CD**
+  - **Secrets Scanning** avec Gitleaks pour détecter les secrets exposés
+  - **Analyse SAST** avec Snyk pour identifier les vulnérabilités du code
+  - Exécution en parallèle avant le linting
+  - Upload automatique des résultats dans GitHub Security
+  - Seuil de sévérité HIGH pour bloquer les vulnérabilités critiques
+- **Documentation de sécurité** (`.github/SECURITY_SETUP.md`)
+  - Guide de configuration Snyk
+  - Instructions pour ajouter `SNYK_TOKEN`
+  - Bonnes pratiques de sécurité
+  - Commandes de test en local
+
+### Sécurité
+- **Détection automatique des secrets** : API keys, tokens, passwords hardcodés
+- **Analyse des vulnérabilités** : Dépendances npm et code source
+- **Intégration GitHub Security** : Alertes centralisées dans l'onglet Security
+- **Permissions CI/CD renforcées** : Ajout de `security-events: write`
+
 ## [2.0.0] - 2025-10-15
 
 ### Ajouté

@@ -1,6 +1,6 @@
 {
   "name": "thread-forum",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Service d'affichage des messages du forum anonyme",
   "main": "server.js",
   "scripts": {

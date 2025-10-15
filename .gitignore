@@ -11,6 +11,7 @@ yarn-error.log
 .env.test.local
 .env.production.local
 
+
 # Logs
 logs/
 *.log
@@ -30,4 +31,21 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+trust-policy.json 

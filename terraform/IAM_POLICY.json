@@ -78,10 +78,12 @@
         "elasticloadbalancing:CreateLoadBalancer",
         "elasticloadbalancing:DeleteLoadBalancer",
         "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeLoadBalancerAttributes",
         "elasticloadbalancing:ModifyLoadBalancerAttributes",
         "elasticloadbalancing:CreateTargetGroup",
         "elasticloadbalancing:DeleteTargetGroup",
         "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetGroupAttributes",
         "elasticloadbalancing:ModifyTargetGroup",
         "elasticloadbalancing:ModifyTargetGroupAttributes",
         "elasticloadbalancing:DescribeTargetHealth",
@@ -106,7 +108,8 @@
         "logs:CreateLogStream",
         "logs:DeleteLogStream",
         "logs:PutLogEvents",
-        "logs:DescribeLogStreams"
+        "logs:DescribeLogStreams",
+        "logs:ListTagsForResource"
       ],
       "Resource": "*"
     },
@@ -125,6 +128,7 @@
         "servicediscovery:UpdateService",
         "servicediscovery:GetOperation",
         "servicediscovery:ListOperations",
+        "servicediscovery:ListTagsForResource",
         "route53:CreateHostedZone",
         "route53:DeleteHostedZone",
         "route53:GetHostedZone",

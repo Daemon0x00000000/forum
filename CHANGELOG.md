@@ -6,6 +6,24 @@
 * add aws_profile variable for configurable AWS profile in Terraform ([e861b16](https://github.com/Daemon0x00000000/forum/commit/e861b1667c5fc68fc4e75cbe5c5a541e7ad8d814))
 * add cleanup script for AWS infrastructure teardown ([09e2f5b](https://github.com/Daemon0x00000000/forum/commit/09e2f5bd3556fb48bcd3a901f8b5c068a0422f4a))
 * add Terraform Cloud configuration and API token support in CI/CD pipeline ([b3b11aa](https://github.com/Daemon0x00000000/forum/commit/b3b11aaad26c710ff9e8975844031bfca1a81ab8))
+* enhance CI/CD configuration with health checks and output formatting ([1d97a66](https://github.com/Daemon0x00000000/forum/commit/1d97a66d4c58f9b623aeb37d036a59bd409e1560))
+* extend IAM policy with additional EC2 permissions ([ae3223b](https://github.com/Daemon0x00000000/forum/commit/ae3223b023f582e011363e77a91bda97ce3b3713))
+* remove AWS credentials configuration from CI/CD pipeline ([2c83564](https://github.com/Daemon0x00000000/forum/commit/2c83564aa590c708cf9112873f7bca339fcabfcf))
+* remove AWS credentials from CI/CD configuration ([b3001dd](https://github.com/Daemon0x00000000/forum/commit/b3001dd1f69fdd514f4e66ece5a87a6cfb1f32f6))
+* update changelog and add DescribeListenerAttributes permission to IAM policy ([c08d32d](https://github.com/Daemon0x00000000/forum/commit/c08d32d83cae0aaf60e78dc29fb6f308fdab678d))
+* update IAM policy and remove default_tags from main.tf for permission adjustments ([c8522b9](https://github.com/Daemon0x00000000/forum/commit/c8522b956b2d7896d24d810b13d590c4bd22d6d7))
+* update IAM policy and remove default_tags from main.tf for permission adjustments ([fab8f13](https://github.com/Daemon0x00000000/forum/commit/fab8f1305f885371b818305c4ca6ea9a704330c9))
+
+
+
+# 1.0.0 (2025-10-15)
+
+
+### Features
+
+* add aws_profile variable for configurable AWS profile in Terraform ([e861b16](https://github.com/Daemon0x00000000/forum/commit/e861b1667c5fc68fc4e75cbe5c5a541e7ad8d814))
+* add cleanup script for AWS infrastructure teardown ([09e2f5b](https://github.com/Daemon0x00000000/forum/commit/09e2f5bd3556fb48bcd3a901f8b5c068a0422f4a))
+* add Terraform Cloud configuration and API token support in CI/CD pipeline ([b3b11aa](https://github.com/Daemon0x00000000/forum/commit/b3b11aaad26c710ff9e8975844031bfca1a81ab8))
 * extend IAM policy with additional EC2 permissions ([ae3223b](https://github.com/Daemon0x00000000/forum/commit/ae3223b023f582e011363e77a91bda97ce3b3713))
 * remove AWS credentials configuration from CI/CD pipeline ([2c83564](https://github.com/Daemon0x00000000/forum/commit/2c83564aa590c708cf9112873f7bca339fcabfcf))
 * remove AWS credentials from CI/CD configuration ([b3001dd](https://github.com/Daemon0x00000000/forum/commit/b3001dd1f69fdd514f4e66ece5a87a6cfb1f32f6))
